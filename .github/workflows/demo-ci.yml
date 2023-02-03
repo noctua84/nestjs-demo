@@ -25,33 +25,30 @@ jobs:
       run: |
         npm install
 
-    - name: Check for and fix problems with package.json
+    - name: Check for package updates
       run: |
-        npm install -g npm-check-updates
-        ncu --doctor
-        ncu -u
-        npm ci
+        npx ncu --doctor -u
 
-    - name: Persist changes
+    - name: Persist changes in package.json
       run: |
         git add package.json package-lock.json
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Actions"
         git commit -m "Update packages" || echo "No changes to commit"
 
-    - name: Push changes
+    - name: Push changes of package.json
       if: success()
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.ACCESS_TOKEN }}
         branch: main
         force: false
 
-    - name: Lint and test
+    - name: Lint and test the application
       run: |
         npm run lint
         npm test
 
-    - name: Build
+    - name: Build the application
       run: |
         npm run build
