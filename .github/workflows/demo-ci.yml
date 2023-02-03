@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Install dependencies
+      run: |
+        npm ci
+
+    - name: Check for and fix problems with package.json
+      run: |
+        npm install -g npm-check-updates
+        ncu --doctor
+        ncu -u
+        npm ci
+
+    - name: Persist changes
+      run: |
+        git add package.json package-lock.json
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Actions"
+        git commit -m "Update packages" || echo "No changes to commit"
+
+    - name: Push changes
+      if: success()
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main
+        force: false
+
+    - name: Lint and test
+      run: |
+        npm run lint
+        npm test
+
+    - name: Build
+      run: |
+        npm run build
