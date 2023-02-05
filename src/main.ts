@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, OpenAPIObject, SwaggerModule } from "@nestjs/swagger";
+import { RouteMetrics } from "./common/middleware/route.metrics";
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

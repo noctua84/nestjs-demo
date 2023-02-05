@@ -1,19 +1,13 @@
-import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
+import { Module } from "@nestjs/common";
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HealthModule } from './health/health.module';
-import { RequestMetricsMiddleware } from "./common/middleware/route.metrics.middleware";
+import { MetricsModule } from './metrics/metrics.module';
 
 
 @Module({
-  imports: [HealthModule],
+  imports: [HealthModule, MetricsModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(RequestMetricsMiddleware)
-      .forRoutes('*');
-  }
-}
+export class AppModule {}
