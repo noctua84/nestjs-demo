@@ -1,5 +1,5 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-
+[![CI](https://github.com/noctua84/nestjs-demo/actions/workflows/demo-ci.yml/badge.svg?branch=main)](https://github.com/noctua84/nestjs-demo/actions/workflows/demo-ci.yml)
 ## Description
 
 Demo-App for NestJS with TypeORM.  
