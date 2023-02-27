@@ -2,7 +2,7 @@ import { MiddlewareConsumer, Module, NestModule, RequestMethod } from "@nestjs/c
 import { MetricsController } from './metrics.controller';
 import * as promClient from 'prom-client';
 import { MetricsService } from "./metrics.service";
-import { RouteMetrics } from "../common/middleware/route.metrics";
+import { RouteMetricsMiddleware } from "../common/middleware/route/metrics/route.metrics.middleware";
 
 @Module({
   providers: [MetricsService, { provide: 'PROM_CLIENT', useValue: promClient }],
@@ -16,6 +16,6 @@ export class MetricsModule implements NestModule {
   }
 
   configure(consumer: MiddlewareConsumer): any {
-    consumer.apply(RouteMetrics).forRoutes('*');
+    consumer.apply(RouteMetricsMiddleware).forRoutes('*');
   }
 }
