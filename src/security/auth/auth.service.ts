@@ -3,7 +3,6 @@ import { User } from "../users/entities/user.entity";
 
 @Injectable()
 export class AuthService {
-  constructor() {}
 
   async validateToken(token: string): Promise<User> {
     // TODO: Implement token validation ((JWT) -> passport) and return the user object
