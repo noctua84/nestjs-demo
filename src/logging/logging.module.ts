@@ -1,8 +1,8 @@
-import { Module } from "@nestjs/common";
+import { Module } from '@nestjs/common';
 import { LoggingService } from './logging.service';
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { WinstonModule } from "nest-winston";
-import { winstonLoggingFactory } from "./config/winston.config";
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { WinstonModule } from 'nest-winston';
+import { winstonLoggingFactory } from './config/winston.config';
 
 @Module({
   imports: [
@@ -24,8 +24,6 @@ import { winstonLoggingFactory } from "./config/winston.config";
   ],
   controllers: [],
   providers: [LoggingService],
-  exports: [LoggingService]
+  exports: [LoggingService],
 })
-
-export class LoggingModule {
-}
+export class LoggingModule {}

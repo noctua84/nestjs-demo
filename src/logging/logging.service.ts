@@ -1,5 +1,5 @@
-import {Inject, Injectable} from '@nestjs/common';
-import {Logger} from "winston";
+import { Inject, Injectable } from '@nestjs/common';
+import { Logger } from 'winston';
 
 @Injectable()
 export class LoggingService {

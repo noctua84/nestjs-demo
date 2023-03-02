@@ -1,17 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { User } from "../users/entities/user.entity";
+import { User } from '../users/entities/user.entity';
 
 @Injectable()
 export class AuthService {
-
   async validateToken(token: string): Promise<User> {
     // TODO: Implement token validation ((JWT) -> passport) and return the user object
-    let valid: boolean = false;
+    const valid = false;
 
     if (valid) {
       // TODO: Get user from database
-    }
-    else {
+    } else {
       return null;
     }
   }
@@ -19,7 +17,7 @@ export class AuthService {
   async checkRoles(user: User, req: any): Promise<boolean> {
     const requiredRoles = req.metadata.roles;
 
-    if(!requiredRoles) {
+    if (!requiredRoles) {
       return true;
     }
 

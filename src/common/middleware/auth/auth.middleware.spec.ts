@@ -1,5 +1,5 @@
 import { AuthMiddleware } from './auth.middleware';
-import { AuthService } from "../../../security/auth/auth.service";
+import { AuthService } from '../../../security/auth/auth.service';
 
 describe('AuthMiddleware', () => {
   let middleware: AuthMiddleware;
@@ -14,6 +14,4 @@ describe('AuthMiddleware', () => {
       expect(middleware).toBeDefined();
     });
   });
-
-
 });

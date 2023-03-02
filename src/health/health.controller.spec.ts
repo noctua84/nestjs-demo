@@ -3,15 +3,15 @@ import { HealthController } from './health.controller';
 import {
   DiskHealthIndicator,
   HealthCheckService,
-  HttpHealthIndicator, MemoryHealthIndicator,
+  HttpHealthIndicator,
+  MemoryHealthIndicator,
   TypeOrmHealthIndicator,
   TerminusModule,
-} from "@nestjs/terminus";
-import { HealthCheckExecutor } from "@nestjs/terminus/dist/health-check/health-check-executor.service";
-import { TERMINUS_LOGGER } from "@nestjs/terminus/dist/health-check/logger/logger.provider";
+} from '@nestjs/terminus';
+import { HealthCheckExecutor } from '@nestjs/terminus/dist/health-check/health-check-executor.service';
+import { TERMINUS_LOGGER } from '@nestjs/terminus/dist/health-check/logger/logger.provider';
 import { ERROR_LOGGER } from '@nestjs/terminus/dist/health-check/error-logger/error-logger.provider';
-import { CHECK_DISK_SPACE_LIB } from "@nestjs/terminus/dist/terminus.constants";
-
+import { CHECK_DISK_SPACE_LIB } from '@nestjs/terminus/dist/terminus.constants';
 
 describe('HealthController', () => {
   let controller: HealthController;
@@ -29,8 +29,8 @@ describe('HealthController', () => {
         MemoryHealthIndicator,
         HealthCheckExecutor,
         { provide: ERROR_LOGGER, useValue: { setContext: jest.fn() } },
-        { provide: TERMINUS_LOGGER, useValue: { setContext: jest.fn()}  },
-        { provide: CHECK_DISK_SPACE_LIB, useValue: jest.fn()},
+        { provide: TERMINUS_LOGGER, useValue: { setContext: jest.fn() } },
+        { provide: CHECK_DISK_SPACE_LIB, useValue: jest.fn() },
       ],
     }).compile();
 

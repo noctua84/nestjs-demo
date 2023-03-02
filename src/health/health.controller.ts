@@ -1,11 +1,12 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get } from '@nestjs/common';
 import {
   DiskHealthIndicator,
   HealthCheck,
   HealthCheckService,
-  HttpHealthIndicator, MemoryHealthIndicator,
-  TypeOrmHealthIndicator
-} from "@nestjs/terminus";
+  HttpHealthIndicator,
+  MemoryHealthIndicator,
+  TypeOrmHealthIndicator,
+} from '@nestjs/terminus';
 
 @Controller('health')
 export class HealthController {
@@ -22,7 +23,11 @@ export class HealthController {
   check() {
     return this.health.check([
       () => this.http.pingCheck('nestjs-demo', 'http://localhost:3000/'),
-      () => this.http.pingCheck('nestjs-demo documentation', 'http://localhost:3000/documentation'),
+      () =>
+        this.http.pingCheck(
+          'nestjs-demo documentation',
+          'http://localhost:3000/documentation',
+        ),
       () => this.db.pingCheck('database'),
       // () => this.disk.checkStorage('storage', { threshold: 40 * 1024 * 1024 * 1024, path: process.cwd() }), // 40GB
       () => this.memory.checkHeap('memory', 100 * 1024 * 1024), // 100MB
