@@ -8,7 +8,7 @@ const { nestLike } = utilities.format;
 
 export const winstonLoggingFactory = (configService: ConfigService): Logger => {
   const appName: string = configService.get<string>('app.name');
-  const dbUrl: string = configService.get<string>('db.mongo.database');
+  const dbUrl: string = configService.get<string>('db.mongo.url');
   const globalLogLevel: string =
     configService.get<string>('logging.global.level') || 'info';
   const consoleLogLevel: string =

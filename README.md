@@ -1,5 +1,14 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![CI](https://github.com/noctua84/nestjs-demo/actions/workflows/demo-ci.yml/badge.svg?branch=main)](https://github.com/noctua84/nestjs-demo/actions/workflows/demo-ci.yml)
+![GitHub](https://img.shields.io/github/license/noctua84/nestjs-demo)
+[![Known Vulnerabilities](https://snyk.io/test/github/noctua84/nestjs-demo/badge.svg?targetFile=package.json)](https://snyk.io/test/github/noctua84/nestjs-demo?targetFile=package.json)
+![GitHub top language](https://img.shields.io/github/languages/top/noctua84/nestjs-demo)
+![GitHub repo size](https://img.shields.io/github/repo-size/noctua84/nestjs-demo)
+![Lines of code](https://img.shields.io/tokei/lines/github/noctua84/nestjs-demo)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/noctua84/nestjs-demo)
+![GitHub last commit](https://img.shields.io/github/last-commit/noctua84/nestjs-demo)
+
+
 ## Description
 
 This project is an experimental one with NestJS. Ultimately, it could develop into a template to start other applications with it.  
@@ -13,11 +22,11 @@ Currently, it is an application skeleton with the following features implemented
 - [ ] Unit tests with Jest
 - [ ] E2E tests with Jest
 - [x] API documentation with Swagger
-- [ ] Cache with Redis
+- [x] Cache with Redis
 - [ ] Authentication with Passport (JWT)
-- [ ] Authorization with CASL
+- [ ] Authorization with RBAC (CASL prepared)
 - [ ] Internationalization with NestJS I18n
-- [ ] Configuration with NestJS Config
+- [x] Configuration with NestJS Config
 - [ ] Configuration schema, validation and defaults with Joi
 
 The packages used are monitored by dependabot and with ncu (npm-check-updates) to keep them up to date.
