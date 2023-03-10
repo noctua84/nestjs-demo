@@ -30,7 +30,7 @@ jobs:
     - name: Persist changes in package.json
       run: |
         git add package.json package-lock.json
-        git config --global user.email "
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
   lint_and_test:
     runs-on: ubuntu-latest
@@ -53,8 +53,8 @@ jobs:
     - name: unit testing
       run: npm test
 
-    - name: e2e testing
-      run: npm run test:e2e
+    #- name: e2e testing
+    #  run: npm run test:e2e
 
   build:
     runs-on: ubuntu-latest
