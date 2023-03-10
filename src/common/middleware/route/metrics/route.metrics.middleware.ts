@@ -1,6 +1,6 @@
 import { Inject, Injectable, NestMiddleware } from '@nestjs/common';
 import client from 'prom-client';
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from 'express';
 
 const endpointCounters = new Map<string, client.Counter>();
 const endpointHistograms = new Map<string, client.Histogram>();
@@ -61,7 +61,7 @@ export class RouteMetricsMiddleware implements NestMiddleware {
           name: endpoint + '_response_time',
           help: 'Response time in milliseconds',
           labelNames: ['route', endpoint, 'time'],
-          buckets: [0.1, 0.3, 0.5, 1, 1.5, 2, 3, 4, 5, 10]
+          buckets: [0.1, 0.3, 0.5, 1, 1.5, 2, 3, 4, 5, 10],
         }),
       );
     }

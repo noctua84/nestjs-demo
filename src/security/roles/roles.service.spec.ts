@@ -1,17 +1,20 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { RolesService } from './roles.service';
-import { Role } from "./entities/role.entity";
-import { Repository } from "typeorm";
-import { getRepositoryToken } from "@nestjs/typeorm";
-import { CreateRoleDto } from "./dto/create-role.dto";
+import { Role } from './entities/role.entity';
+import { Repository } from 'typeorm';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { CreateRoleDto } from './dto/create-role.dto';
 
 describe('RolesService', () => {
   let rolesService: RolesService;
-  let rolesRepository: Repository<Role>
+  let rolesRepository: Repository<Role>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [RolesService, { provide: getRepositoryToken(Role), useClass: Repository }],
+      providers: [
+        RolesService,
+        { provide: getRepositoryToken(Role), useClass: Repository },
+      ],
     }).compile();
 
     rolesService = module.get<RolesService>(RolesService);
@@ -78,11 +81,14 @@ describe('RolesService', () => {
 
     it('should throw an error if the role does not exist', async () => {
       const roleId = 1;
-      jest.spyOn(rolesRepository, 'delete').mockRejectedValue(new Error('Role not found'));
+      jest
+        .spyOn(rolesRepository, 'delete')
+        .mockRejectedValue(new Error('Role not found'));
 
-      await expect(rolesService.removeRole(roleId)).rejects.toThrow('Role not found');
+      await expect(rolesService.removeRole(roleId)).rejects.toThrow(
+        'Role not found',
+      );
       expect(rolesRepository.delete).toHaveBeenCalledWith(roleId);
     });
   });
-
 });

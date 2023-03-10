@@ -9,11 +9,15 @@ import { RolesModule } from './security/roles/roles.module';
 import { UsersModule } from './security/users/users.module';
 import { AuthModule } from './security/auth/auth.module';
 import { RedisCacheModule } from './redis-cache/redis-cache.module';
+import { appConfig } from './config/app.config';
+import { validationSchema } from './config/schema/config.schema';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      load: [appConfig],
+      validationSchema,
     }),
     HealthModule,
     MetricsModule,

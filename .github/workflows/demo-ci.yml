@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  check dependencies:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,33 +22,55 @@ jobs:
         node-version: 16
 
     - name: Install dependencies
-      run: |
-        npm install
+      run: npm install
 
     - name: Check for package updates
-      run: |
-        npx ncu --doctor -u
+      run: npx ncu --doctor -u
 
     - name: Persist changes in package.json
       run: |
         git add package.json package-lock.json
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Actions"
-        git commit -m "Update packages" || echo "No changes to commit"
+        git config --global user.email "
 
-    - name: Push changes of package.json
-      if: success()
-      uses: ad-m/github-push-action@master
+  lint and test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: main
-        force: false
+        node-version: 16
 
-    - name: Lint and test the application
-      run: |
-        npm run lint
-        npm test
+    - name: Install dependencies
+      run: npm install
+
+    - name: linting
+      run: npm run lint
+
+    - name: unit testing
+      runs: npm test
+
+    - name: e2e testing
+      run: npm run test:e2e
+
+  build:
+    runs-on: ubuntu-latest
+    depends-on: [check dependencies, lint and test]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+
+    - name: Install dependencies
+      run: npm install
 
     - name: Build the application
-      run: |
-        npm run build
+      run: npm run build
